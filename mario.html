@@ -1,0 +1,94 @@
+<html>
+  <head>
+    <title>FishTank 2.0</title>
+    <script src="http://cloud.github.com/downloads/processing-js/processing-js/processing-1.4.1.min.js"></script>
+    <script type="text/processing" data-processing-target="mycanvas">
+        //Your code goes here 
+        
+        Mario readyMario = new Mario(0,0);
+
+        int WINDOW_WIDTH = 600;
+        int WINDOW_HEIGHT = 400;
+        
+        int REFRESH_RATE_PER_SECOND = 60;
+        int BLUE = color(32, 12, 207);
+        var UP_ARROW = 38; 
+        
+        //runs once at the start of the program 
+        void setup() 
+        {
+          size(WINDOW_WIDTH, WINDOW_HEIGHT);
+        
+          frameRate(REFRESH_RATE_PER_SECOND);//how often per second the draw function is called 
+          
+        }
+        
+        
+        //called repeatedly IMPORTANT AREA
+        void draw() { 
+        
+           background(BLUE);
+			
+           readyMario.updateAndDrawMario();
+          }
+        
+        //needed to access images, images must be in same directory as html file 
+        /* @pjs preload="mario.jpg,mario_jump.jpg"; */
+        class Mario
+        {
+          //attributes
+          var marioX, marioY, coins;
+          PImage img;
+
+          //constructor
+          Mario(var mX, var mY){
+            marioX = mX;
+            marioY = mY;
+            img = loadImage("mario_jump.jpg");
+            coins = 0;
+          }
+
+          void updateAndDrawMario(){
+            update();
+            drawMario();
+          }
+
+          void update(){
+            if (keyPressed && keyCode == UP_ARROW) {
+              jump();
+            }
+            else {
+              fall();
+            }
+            
+          }
+
+          void drawMario(){ 
+            image(img, marioX, marioY,64,64);
+          }
+
+          void jump(){
+            img = loadImage("mario_jump.jpg");
+            marioY -= 5;
+           }
+
+          void fall(){
+           if(marioY < height - 75){
+            	marioY += 5;
+            }
+           else { //at bottom of screen 
+              img = loadImage("mario.jpg");
+            }
+          }
+        }
+            
+          
+          
+        </script> 
+    </head>
+    
+    <body>
+    <canvas id="mycanvas"></canvas>
+  </body>
+</html>
+    
