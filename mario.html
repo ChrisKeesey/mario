@@ -23,19 +23,28 @@
         
           background(200); //needed in the draw function to "clear" the screen between updates
         
-          building.drawbuilding();
+          building.movebuilding();
         
         } 
         
 
         class building {
-          var yPos, xPos, width, color;
+          var yPos, xPos, width, color, speed;
           building() {
             yPos = random(50,150);
             xPos = 0;
             width = random(80,120);
             color = 0;
+            speed = 1;
           }
+          void movebuilding() {
+            update();
+            drawbuilding();
+          }
+          void update() {
+            xPos += speed;
+          }
+
           void drawbuilding() {
             fill(color);
             rect(xPos,yPos,width,500-yPos);
