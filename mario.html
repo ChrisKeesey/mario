@@ -6,7 +6,8 @@
     <script type="text/processing" data-processing-target="mycanvas">
 
         building building = new building();
-
+        ArrayList<Building> buildingList;
+        
         var WINDOW_WIDTH = 800;
         var WINDOW_HEIGHT = 500; 
         var GREY = 200;
@@ -14,11 +15,12 @@
           size(WINDOW_WIDTH, WINDOW_HEIGHT); //sets the size of the window
         
           frameRate(30); //how many times the draw function is called per second
-        
+          buildingList = new ArrayList<Building>();
+          for(var i = 0; i < 10; i++) {
+            buildingList.add(new building());
         }
         
-        
-        //called repeatedly
+
         void draw() { 
         
           background(200); //needed in the draw function to "clear" the screen between updates
