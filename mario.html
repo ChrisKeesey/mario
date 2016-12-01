@@ -31,6 +31,7 @@
             Building currentBuilding = buildingList.get(i);
             currentBuilding.moveBuilding();
           }
+          void fillSkyline();
 
         }
 
@@ -58,12 +59,21 @@
           }
 
         }
-        // class Skyline {
-        //   var buildingList, speed;
-        //   Skyline() {
-        //
-        //   }
-        // }
+        class Skyline {
+          var xPos, width;
+          Skyline() {
+            xPos = 0;
+            width = random(80, 120);
+
+          }
+          void fillSkyline() {
+            currentBuilding = new Building(xPos,width);
+            buildingList.add(currentBuilding);
+          }
+          void update() {
+            xPos += width
+          }
+        }
 
 
         </script>
