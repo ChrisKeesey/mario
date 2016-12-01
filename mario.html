@@ -1,34 +1,39 @@
 
 <html>
   <head>
-    <title>FishTank 2.0</title>
+    <title>Skyline</title>
     <script src="http://cloud.github.com/downloads/processing-js/processing-js/processing-1.4.1.min.js"></script>
     <script type="text/processing" data-processing-target="mycanvas">
 
-        Building Building = new building();
+
         ArrayList<Building> buildingList;
-        
+
         var WINDOW_WIDTH = 800;
-        var WINDOW_HEIGHT = 500; 
+        var WINDOW_HEIGHT = 500;
         var GREY = 200;
         void setup() {
-          size(WINDOW_WIDTH, WINDOW_HEIGHT); //sets the size of the window
-        
-          frameRate(30); //how many times the draw function is called per second
-          buildingList = new ArrayList<Building>();
-          for(var i = 0; i < 10; i++) {
-            buildingList.add(new Building());
-        }
-        
+          size(WINDOW_WIDTH, WINDOW_HEIGHT);
 
-        void draw() { 
-        
-          background(200); //needed in the draw function to "clear" the screen between updates
-        
-          Building.moveBuilding();
-        
-        } 
-        
+          frameRate(30);
+          buildingList = new ArrayList<Building>();
+          var numberOfBuildings = 10;
+          for(var i = 0; i < numberOfBuildings; i++) {
+            buildingList.add(new Building());
+          }
+        }
+
+
+        void draw() {
+
+          background(200);
+
+          for(var i=0; i < buildingList.size(); i++) {
+            Building currentBuilding = buildingList.get(i);
+            currentBuilding.moveBuilding();
+          }
+
+        }
+
 
         class Building {
           var yPos, xPos, width, color, speed;
@@ -51,25 +56,24 @@
             fill(color);
             rect(xPos,yPos,width,500-yPos);
           }
-          
-        }
 
-        class Skyline {
-          var buildingList, speed;
-          Skyline() {
-          
-          }
         }
+        // class Skyline {
+        //   var buildingList, speed;
+        //   Skyline() {
+        //
+        //   }
+        // }
 
-        
-        </script> 
+
+        </script>
     </head>
-    
+
     <body>
     <canvas id="mycanvas"></canvas>
   </body>
 </html>
-    
+
 mario.html
 Open with Google Docs
 Displaying mario.html.
