@@ -1,66 +1,79 @@
 
 <html>
   <head>
-    <title>FishTank 2.0</title>
+    <title>Skyline</title>
     <script src="http://cloud.github.com/downloads/processing-js/processing-js/processing-1.4.1.min.js"></script>
     <script type="text/processing" data-processing-target="mycanvas">
 
-        building building = new building();
+
+        ArrayList<Building> buildingList;
 
         var WINDOW_WIDTH = 800;
-        var WINDOW_HEIGHT = 500; 
+        var WINDOW_HEIGHT = 500;
         var GREY = 200;
         void setup() {
-          size(WINDOW_WIDTH, WINDOW_HEIGHT); //sets the size of the window
-        
-          frameRate(30); //how many times the draw function is called per second
-        
-        }
-        
-        
-        //called repeatedly
-        void draw() { 
-        
-          background(200); //needed in the draw function to "clear" the screen between updates
-        
-          building.movebuilding();
-        
-        } 
-        
+          size(WINDOW_WIDTH, WINDOW_HEIGHT);
 
-        class building {
+          frameRate(30);
+          buildingList = new ArrayList<Building>();
+          var numberOfBuildings = 10;
+          for(var i = 0; i < numberOfBuildings; i++) {
+            buildingList.add(new Building());
+          }
+        }
+
+
+        void draw() {
+
+          background(200);
+
+          for(var i=0; i < buildingList.size(); i++) {
+            Building currentBuilding = buildingList.get(i);
+            currentBuilding.moveBuilding();
+          }
+
+        }
+
+
+        class Building {
           var yPos, xPos, width, color, speed;
-          building() {
+          Building() {
             yPos = random(50,150);
             xPos = 0;
             width = random(80,120);
             color = 0;
             speed = 1;
           }
-          void movebuilding() {
+          void moveBuilding() {
             update();
-            drawbuilding();
+            drawBuilding();
           }
           void update() {
             xPos += speed;
           }
 
-          void drawbuilding() {
+          void drawBuilding() {
             fill(color);
             rect(xPos,yPos,width,500-yPos);
           }
-          
-        }
 
-        
-        </script> 
+        }
+        // class Skyline {
+        //   var buildingList, speed;
+        //   Skyline() {
+        //
+        //   }
+        // }
+
+
+        </script>
     </head>
-    
+
     <body>
     <canvas id="mycanvas"></canvas>
   </body>
 </html>
-    
+
 mario.html
 Open with Google Docs
 Displaying mario.html.
