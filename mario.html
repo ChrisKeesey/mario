@@ -18,7 +18,7 @@
           buildingList = new ArrayList<Building>();
           var numberOfBuildings = 10;
           for(var i = 0; i < numberOfBuildings; i++) {
-            buildingList.add(new Building());
+            buildingList.add(new Building(0, 100));
           }
         }
 
@@ -37,10 +37,10 @@
 
         class Building {
           var yPos, xPos, width, color, speed;
-          Building() {
+          Building(var x,var w) {
             yPos = random(50,150);
-            xPos = 0;
-            width = random(80,120);
+            xPos = x;
+            width = w;
             color = 0;
             speed = 1;
           }
