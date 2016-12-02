@@ -27,18 +27,16 @@
 
           background(200);
 
-          for(var i=0; i < buildingList.size(); i++) {
-            Building currentBuilding = buildingList.get(i);
-            currentBuilding.moveBuilding();
+          drawSkyline();
           }
-          void fillSkyline();
+
 
         }
 
 
         class Building {
           var yPos, xPos, width, color, speed;
-          Building(var x,var w) {
+          Building(x,w) {
             yPos = random(50,150);
             xPos = x;
             width = w;
@@ -59,22 +57,29 @@
           }
 
         }
+
         class Skyline {
-          var xPos, width;
+          ArrayList<Building> buildingList;
+          var xPos;
           Skyline() {
+            buildingList = new ArrayList<Building>();
             xPos = 0;
-            width = random(80, 120);
-
           }
-          void fillSkyline() {
-            currentBuilding = new Building(xPos,width);
+          drawSkyline() {
+            for(var i=0; i < buildingList.size(); i++) {
+              Building currentBuilding = buildingList.get(i);
+              currentBuilding.drawBuilding();
+            }
+          }
+
+          addBuilding() {
+            var currentBuildingWidth = random(80,120);
+            Building currentBuilding = new Building(xPos, currentBuildingWidth);
             buildingList.add(currentBuilding);
+            xPos += currentBuildingWidth;
           }
-          void update() {
-            xPos += width
-          }
-        }
 
+        }
 
         </script>
     </head>
