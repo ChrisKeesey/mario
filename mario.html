@@ -5,7 +5,7 @@
     <script src="http://cloud.github.com/downloads/processing-js/processing-js/processing-1.4.1.min.js"></script>
     <script type="text/processing" data-processing-target="mycanvas">
 
-
+        Skyline back = new Skyline();
         ArrayList<Building> buildingList;
 
         var WINDOW_WIDTH = 800;
@@ -17,21 +17,19 @@
           frameRate(30);
           buildingList = new ArrayList<Building>();
           var numberOfBuildings = 10;
-          for(var i = 0; i < numberOfBuildings; i++) {
-            buildingList.add(new Building(0, 100));
+          for (i = 0; i < numberOfBuildings; i++) {
+            addBuilding();
           }
         }
+
 
 
         void draw() {
 
           background(200);
-
-          drawSkyline();
-          }
-
-
+          back.drawSkyline();
         }
+
 
 
         class Building {
@@ -68,7 +66,7 @@
           drawSkyline() {
             for(var i=0; i < buildingList.size(); i++) {
               Building currentBuilding = buildingList.get(i);
-              currentBuilding.drawBuilding();
+              currentBuilding.moveBuilding();
             }
           }
 
