@@ -5,8 +5,8 @@
     <script src="http://cloud.github.com/downloads/processing-js/processing-js/processing-1.4.1.min.js"></script>
     <script type="text/processing" data-processing-target="mycanvas">
 
-        Building testBuilding = new Building(0, random(30,100));
         Skyline back = new Skyline();
+        //Skyline middle = new Skyline();
         ArrayList<Building> buildingList;
 
         var WINDOW_WIDTH = 800;
@@ -24,7 +24,8 @@
         void draw() {
 
           background(200);
-          back.drawSkyline();
+          back.moveSkyline();
+          //middle.moveSkyline();
         }
 
 
@@ -32,11 +33,11 @@
         class Building {
           var yPos, xPos, width, color, speed;
           Building(x,w) {
-            yPos = random(50,150);
+            yPos = random(50,200);
             xPos = x;
             width = w;
             color = 0;
-            speed = 1;
+            speed = -1;
           }
           void moveBuilding() {
             update();
@@ -66,7 +67,7 @@
             updateSkyline();
             drawSkyline();
           }
-          void update(){
+          void updateSkyline(){
             for(var i=0; i < buildingList.size(); i++) {
               Building currentBuilding = buildingList.get(i);
               currentBuilding.updateBuilding();
@@ -74,13 +75,14 @@
           }
 
           void fillSkyline() {
-            var numberOfBuildings = 20;
+            var numberOfBuildings = 9;
             for (i = 0; i < numberOfBuildings; i++) {
               addBuilding();
+            var x = xPos
+            for (i = 0; i < x; i++) {
+
             }
           }
-
-
           void drawSkyline() {
             for(var i=0; i < buildingList.size(); i++) {
               Building currentBuilding = buildingList.get(i);
@@ -92,10 +94,10 @@
             var currentBuildingWidth = random(80,120);
             Building currentBuilding = new Building(xPos, currentBuildingWidth);
             buildingList.add(currentBuilding);
-            xPos += currentBuildingWidth;
+            xPos += currentBuildingWidth + 10;
           }
-
         }
+
 
         </script>
     </head>
