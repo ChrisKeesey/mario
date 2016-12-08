@@ -15,7 +15,7 @@
         void setup() {
           size(WINDOW_WIDTH, WINDOW_HEIGHT);
 
-          frameRate(30);
+          frameRate(80);
           buildingList = new ArrayList<Building>();
         }
 
@@ -52,6 +52,9 @@
             rect(xPos,yPos,width,500-yPos);
           }
 
+          int getX() {
+            return xPos;
+          }
         }
 
         class Skyline {
@@ -71,15 +74,20 @@
             for(var i=0; i < buildingList.size(); i++) {
               Building currentBuilding = buildingList.get(i);
               currentBuilding.updateBuilding();
+              if(currentBuilding.getX() < -100 ) {
+                addBuilding();
+                buildingList.remove(i);
+                i--;
+              }
             }
+            xPos--;
+
           }
 
           void fillSkyline() {
-            var numberOfBuildings = 9;
-            for (i = 0; i < numberOfBuildings; i++) {
+            //var numberOfBuildings = 1;
+            while(xPos < screen.width) {
               addBuilding();
-            var x = xPos
-            for (i = 0; i < x; i++) {
 
             }
           }
