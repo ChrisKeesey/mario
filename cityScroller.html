@@ -5,8 +5,8 @@
     <script src="http://cloud.github.com/downloads/processing-js/processing-js/processing-1.4.1.min.js"></script>
     <script type="text/processing" data-processing-target="mycanvas">
 
-        Skyline back = new Skyline();
-        //Skyline middle = new Skyline();
+        Skyline back = new Skyline(100, 0, 1, random(120,140));
+        Skyline middle = new Skyline(300, 200, 1, random(80,100));
         ArrayList<Building> buildingList;
 
         var WINDOW_WIDTH = 800;
@@ -25,19 +25,19 @@
 
           background(200);
           back.moveSkyline();
-          //middle.moveSkyline();
+          middle.moveSkyline();
         }
 
 
 
         class Building {
           var yPos, xPos, width, color, speed;
-          Building(x,w) {
-            yPos = random(50,200);
+          Building(var y, var x,var w, var s, var c) {
+            yPos = y;
             xPos = x;
             width = w;
-            color = 0;
-            speed = -1;
+            color = c;
+            speed = -s;
           }
           void moveBuilding() {
             update();
@@ -60,9 +60,17 @@
         class Skyline {
           ArrayList<Building> buildingList;
           var xPos;
-          Skyline() {
+          var maxBuildingHeight;
+          var minBuildingHeight;
+          var buildingSpeed;
+          var color;
+          Skyline(var maxBH, var minBH, var bs, var c) {
             buildingList = new ArrayList<Building>();
             xPos = 0;
+            maxBuildingHeight = maxBH;
+            minBuildingHeight = minBH;
+            buildingSpeed = bs;
+            color = c;
             fillSkyline();
           }
 
@@ -74,19 +82,18 @@
             for(var i=0; i < buildingList.size(); i++) {
               Building currentBuilding = buildingList.get(i);
               currentBuilding.updateBuilding();
-              if(currentBuilding.getX() < -100 ) {
+              if(currentBuilding.getX() < -120 ) {
                 addBuilding();
                 buildingList.remove(i);
                 i--;
               }
             }
-            
+
             xPos--;
 
           }
 
           void fillSkyline() {
-            //var numberOfBuildings = 1;
             while(xPos < screen.width) {
               addBuilding();
 
@@ -101,9 +108,10 @@
 
           void addBuilding() {
             var currentBuildingWidth = random(80,120);
-            Building currentBuilding = new Building(xPos, currentBuildingWidth);
+            var currentBuildingHeight = random(minBuildingHeight, maxBuildingHeight);
+            Building currentBuilding = new Building(currentBuildingHeight, xPos, currentBuildingWidth, buildingSpeed, color);
             buildingList.add(currentBuilding);
-            xPos += currentBuildingWidth + 10;
+            xPos += currentBuildingWidth;
           }
         }
 
