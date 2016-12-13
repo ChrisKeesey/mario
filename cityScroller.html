@@ -34,6 +34,14 @@
           }
         }
 
+        // function buildingColorChange() {
+        //   grayColor =
+        //   if (Red < 50 & Green < 50 & Blue < 50){
+        //     Red = 150;
+        //     Blue = 250;
+        //     Green = 200;
+        //   }
+        // }
 
 
         void draw() {
@@ -43,7 +51,7 @@
           back.moveSkyline();
           middle.moveSkyline();
           baby.moveSkyline();
-			    if(frameCount%5.5==0) {
+			    if(frameCount%6==0) {
 						backgroundChange();
 					}
         }
@@ -63,7 +71,7 @@
             ellipse(xPos, yPos, size, size);
           }
           void update() {
-            yPos += .35;
+            yPos += .7;
             xPos += .2;
             if(yPos > 700){
               yPos = -100;
@@ -103,6 +111,7 @@
           int getX() {
             return xPos;
           }
+
         }
 
         class Skyline {
@@ -160,7 +169,7 @@
             var currentBuildingHeight = random(minBuildingHeight, maxBuildingHeight);
             Building currentBuilding = new Building(currentBuildingHeight, xPos, currentBuildingWidth, buildingSpeed, color);
             buildingList.add(currentBuilding);
-            xPos += currentBuildingWidth + spaceBetween;
+            xPos += currentBuildingWidth + 10;
           }
         }
 
